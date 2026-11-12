@@ -239,7 +239,7 @@ footer a{color:var(--ink);margin:0 .6rem;text-decoration:underline wavy var(--pi
 
   // songs carousel
   var cols=['var(--pink)','var(--lime)','var(--violet)','var(--sticker)'],tr=document.getElementById('track'),h='';
-  var items=[['Design','Interfaces that feel friendly and clear.'],['Build','Websites and small tools, start to finish.'],['Write','Plain words for complicated things.'],['Teach','Explaining ideas so they stick.'],['Listen','Understanding the problem first.']];
+  var items=[['Design','A design that is friendly'],['Build','Brick by Brick, Tutorials by Tutorials'],['Photos','Shoots for memories'],['Entertain','Yapping'],['Listen','Understanding the problem first.']];
   items.forEach(function(it,i){h+='<div class="song"><div class="cover" style="background:'+cols[i%4]+'">0'+(i+1)+'</div><p>'+it[0]+'</p><span>'+it[1]+'</span></div>'});
   tr.innerHTML=h;
   var idx=document.getElementById('idx');
