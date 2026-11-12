@@ -195,7 +195,7 @@ footer a{color:var(--ink);margin:0 .6rem;text-decoration:underline wavy var(--pi
   <section id="contact">
     <div class="head"><em>07</em><h2>CONTACT</h2><small data-en="Say hello" data-jp="ご連絡">Say hello</small></div>
     <p>Wanna just say hi? Send a note.</p>
-    <div class="mail"><span id="addr">SsundeeFang@gmail.com</span><button class="btn" id="copy">COPY</button></div>
+    <div class="discord username"><span id="addr">Narby_05</span><button class="btn" id="copy">COPY</button></div>
   </section>
 </main>
 
@@ -240,7 +240,7 @@ footer a{color:var(--ink);margin:0 .6rem;text-decoration:underline wavy var(--pi
   document.getElementById('prev').onclick=function(){tr.scrollBy({left:-step(),behavior:'smooth'})};
   document.getElementById('next').onclick=function(){tr.scrollBy({left:step(),behavior:'smooth'})};
 
-  // copy email
+  // copy username
   var cb=document.getElementById('copy');
   cb.onclick=function(){var v=document.getElementById('addr').textContent;
     (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){cb.textContent='COPIED'}).catch(function(){cb.textContent='PRESS CTRL+C'});
