@@ -114,10 +114,15 @@ footer a{color:var(--ink);margin:0 .6rem;text-decoration:underline wavy var(--pi
 .portrait{overflow:hidden;background:#000}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 
-.chans{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:1.2rem}
+.chans{display:grid;gap:1.2rem;grid-template-columns:1fr 1fr;margin-top:1.2rem}
+.chan.email{grid-column:1/-1;padding:1.8rem 1.6rem}
+.chan.email .handle{font-size:clamp(1.5rem,5.6vw,3rem)}
+@media(max-width:560px){.chans{grid-template-columns:1fr}}
 .chan{display:flex;flex-direction:column;align-items:flex-start;gap:.8rem;background:var(--card);border:3px solid var(--ink);border-radius:1.2rem;padding:1.2rem 1.3rem;box-shadow:8px 8px 0 var(--violet)}
 .chan:nth-child(2){box-shadow:8px 8px 0 var(--pink)}
+.chan:nth-child(3){box-shadow:8px 8px 0 var(--lime)}
 .chan b{font-weight:900;font-size:.85rem;color:var(--lime)}
+.chan .acts{display:flex;flex-wrap:wrap;gap:.7rem}
 .chan .handle{font-family:var(--display);font-size:clamp(1.2rem,4vw,1.8rem);line-height:1.1;word-break:break-all}
 
 /* page background (animated bars live in .bg), content sits on solid panels */
@@ -250,10 +255,11 @@ footer{width:calc(100% - 2rem);max-width:72rem;margin:2rem auto 1.5rem;padding:2
 
   <section id="contact">
     <div class="head"><em>07</em><h2>CONTACT</h2><small>Say hello</small></div>
-    <p>Wanna just say hi or something? Send a message on discord or twitter.</p>
+    <p>Wanna just say hi or something? Send a message on email, discord or twitter.</p>
     <div class="chans">
       <div class="chan"><b>DISCORD</b><span class="handle" id="addr">Narby_05</span><button class="btn" id="copy">COPY</button></div>
       <div class="chan"><b>X / TWITTER</b><span class="handle">@Narby05</span><a class="btn" href="https://x.com/Narby05" target="_blank" rel="noopener noreferrer">OPEN X</a></div>
+      <div class="chan email"><b>EMAIL</b><span class="handle" id="addr2">narby050509@gmail.com</span><span class="acts"><button class="btn" id="copy2">COPY</button><a class="btn" href="mailto:narby050509@gmail.com">SEND</a></span></div>
     </div>
   </section>
 </main>
@@ -290,10 +296,13 @@ footer{width:calc(100% - 2rem);max-width:72rem;margin:2rem auto 1.5rem;padding:2
   document.getElementById('next').onclick=function(){tr.scrollBy({left:step(),behavior:'smooth'})};
 
   // copy username
-  var cb=document.getElementById('copy');
-  cb.onclick=function(){var v=document.getElementById('addr').textContent;
-    (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){cb.textContent='COPIED'}).catch(function(){cb.textContent='PRESS CTRL+C'});
-    setTimeout(function(){cb.textContent='COPY'},1600)};
+  [['copy','addr'],['copy2','addr2']].forEach(function(pair){
+    var cb=document.getElementById(pair[0]),src=document.getElementById(pair[1]);
+    if(!cb||!src)return;
+    cb.onclick=function(){var v=src.textContent;
+      (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){cb.textContent='COPIED'}).catch(function(){cb.textContent='PRESS CTRL+C'});
+      setTimeout(function(){cb.textContent='COPY'},1600)};
+  });
 
   // custom cursor
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){
